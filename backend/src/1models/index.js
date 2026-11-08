@@ -3,6 +3,7 @@ const Usuario = require('./Usuario');
 const Exercicio = require('./Exercicio');
 const Rotina = require('./Rotina');
 const RotinaExercicio = require('./RotinaExercicio');
+const Receita = require('./Receita');
 
 // Relacionamento: Usuário tem muitas rotinas / Rotina pertence a um usuário
 Usuario.hasMany(Rotina, { foreignKey: 'id_usuario', onDelete: 'CASCADE' });
@@ -32,5 +33,6 @@ module.exports = {
     Usuario,
     Exercicio,
     Rotina,
-    RotinaExercicio
+    RotinaExercicio,
+    Receita
 };

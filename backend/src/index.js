@@ -34,11 +34,29 @@ app.use(express.json());
 const usuarioRoutes = require('./3routes/usuarioRoutes');
 app.use('/usuario', usuarioRoutes);
 
+const receitaRoutes = require('./3routes/receitaRoutes');
+app.use('/receitas', receitaRoutes);
+
 // Documentação interativa (Swagger UI) das rotas da API.
 app.use(
     '/api-docs',
     swaggerUi.serve,
     swaggerUi.setup(swaggerSpec));
+
+// Tratamento de erros que acontecem ANTES de chegar nas rotas, como um JSON malformado
+// no corpo da requisição. Sem isto, o Express devolveria uma página HTML de erro com
+// o stack trace. Precisa ficar depois de todas as rotas e ter exatamente 4 parâmetros.
+app.use((erro, req, res, next) => {
+    if (erro.type === 'entity.parse.failed') {
+        return res.status(400).json({ erro: 'O corpo da requisição não é um JSON válido.' });
+    }
+    const status = erro.status || erro.statusCode;
+    if (status >= 400 && status < 500) {
+        return res.status(status).json({ erro: 'Requisição inválida.' });
+    }
+    console.error({ nome: erro.name, mensagem: erro.message });
+    res.status(500).json({ erro: 'Erro interno do servidor. Tente novamente mais tarde.' });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

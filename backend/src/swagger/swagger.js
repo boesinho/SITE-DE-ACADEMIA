@@ -1,4 +1,5 @@
 const usuarioSwagger = require('./usuarioSwagger');
+const receitaSwagger = require('./receitaSwagger');
 
 const swaggerSpec = {
     openapi: '3.0.0',
@@ -15,8 +16,15 @@ const swaggerSpec = {
         }
     ],
 
+    components: {
+        schemas: {
+            ...receitaSwagger.components.schemas
+        }
+    },
+
     paths: {
-        ...usuarioSwagger.paths
+        ...usuarioSwagger.paths,
+        ...receitaSwagger.paths
     }
 };
 
