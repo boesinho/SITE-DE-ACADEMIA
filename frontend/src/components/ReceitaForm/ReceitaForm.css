@@ -1,0 +1,120 @@
+.receita-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.receita-form__linha {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.receita-form__erro-geral {
+  padding: var(--space-3) var(--space-4);
+  background: var(--danger-soft);
+  border: 1px solid rgba(255, 107, 107, 0.4);
+  border-radius: var(--radius-sm);
+  color: var(--danger);
+  font-size: 0.925rem;
+}
+
+/* ---------- Campo ---------- */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.campo__rotulo {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.campo__obrigatorio {
+  color: var(--accent);
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  line-height: 1.5;
+  transition:
+    border-color 0.2s var(--ease),
+    box-shadow 0.2s var(--ease);
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+  color: #6d6d75;
+}
+
+.campo textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.campo select {
+  appearance: none;
+  padding-right: 2.4rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%23c6ff00' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  cursor: pointer;
+}
+
+.campo select option {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.campo input:hover,
+.campo select:hover,
+.campo textarea:hover {
+  border-color: #44444b;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ---------- Erro por campo ---------- */
+.campo--erro input,
+.campo--erro select,
+.campo--erro textarea {
+  border-color: var(--danger);
+}
+
+.campo--erro input:focus,
+.campo--erro select:focus,
+.campo--erro textarea:focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px var(--danger-soft);
+}
+
+.campo__dica {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.campo__erro {
+  color: var(--danger);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+@media (min-width: 600px) {
+  .receita-form__linha {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -1,0 +1,97 @@
+.lista-receitas__grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-5);
+  list-style: none;
+  transition: opacity 0.2s var(--ease);
+}
+
+.lista-receitas__grade--atualizando {
+  opacity: 0.6;
+}
+
+/* ---------- Esqueleto de carregamento ---------- */
+.lista-receitas__esqueleto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-height: 300px;
+  padding: 0 0 var(--space-5);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.lista-receitas__esqueleto-capa,
+.lista-receitas__esqueleto-linha {
+  display: block;
+  background: linear-gradient(90deg, var(--surface-2) 25%, #2d2d32 50%, var(--surface-2) 75%);
+  background-size: 200% 100%;
+  animation: lista-brilho 1.4s linear infinite;
+}
+
+.lista-receitas__esqueleto-capa {
+  height: 118px;
+}
+
+.lista-receitas__esqueleto-linha {
+  height: 14px;
+  margin-inline: var(--space-5);
+  border-radius: 6px;
+}
+
+.lista-receitas__esqueleto-linha--titulo {
+  height: 22px;
+  width: 65%;
+  margin-top: var(--space-2);
+}
+
+.lista-receitas__esqueleto-linha--curta {
+  width: 40%;
+}
+
+@keyframes lista-brilho {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ---------- Erro e vazio ---------- */
+.lista-receitas__aviso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-7) var(--space-5);
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.lista-receitas__aviso h3 {
+  color: var(--text);
+  font-size: 1.8rem;
+}
+
+.lista-receitas__aviso p {
+  max-width: 46ch;
+}
+
+.lista-receitas__aviso .btn {
+  margin-top: var(--space-2);
+}
+
+.lista-receitas__aviso--erro {
+  background: var(--danger-soft);
+  border: 1px solid rgba(255, 107, 107, 0.4);
+}
+
+.lista-receitas__aviso--erro h3 {
+  color: var(--danger);
+}

@@ -1,0 +1,14 @@
+.confirm__mensagem {
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.confirm__erro {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--danger-soft);
+  border: 1px solid rgba(255, 107, 107, 0.4);
+  border-radius: var(--radius-sm);
+  color: var(--danger);
+  font-size: 0.925rem;
+}

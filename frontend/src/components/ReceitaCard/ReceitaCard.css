@@ -1,0 +1,145 @@
+.receita-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition:
+    transform 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    box-shadow 0.25s var(--ease);
+}
+
+.receita-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(198, 255, 0, 0.45);
+  box-shadow: var(--shadow);
+}
+
+/* O anel de foco aparece no card inteiro quando o botão do nome recebe foco por teclado */
+.receita-card:has(.receita-card__abrir:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------- Topo: gradiente + emoji + selo ---------- */
+.receita-card__topo {
+  position: relative;
+}
+
+.receita-card__capa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 118px;
+}
+
+.receita-card__emoji {
+  font-size: 3.2rem;
+  line-height: 1;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
+  transition: transform 0.3s var(--ease);
+}
+
+.receita-card:hover .receita-card__emoji {
+  transform: scale(1.12) rotate(-4deg);
+}
+
+.receita-card__selo {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  padding: 0.2rem 0.65rem;
+  background: rgba(15, 15, 16, 0.82);
+  border: 1px solid rgba(198, 255, 0, 0.35);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ---------- Corpo ---------- */
+.receita-card__corpo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-5) var(--space-5);
+}
+
+.receita-card__titulo {
+  font-size: 1.65rem;
+  overflow-wrap: anywhere;
+}
+
+.receita-card__abrir {
+  padding: 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-align: left;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+/* Estica o botão para cobrir o card todo (card inteiro clicável) */
+.receita-card__abrir::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.receita-card__abrir:focus-visible {
+  outline: none;
+}
+
+/* Proteína em destaque */
+.receita-card__proteina {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.receita-card__proteina strong {
+  color: var(--accent);
+  font-family: var(--font-title);
+  font-size: 1.55rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1;
+}
+
+.receita-card__descricao {
+  display: -webkit-box;
+  color: var(--text-muted);
+  font-size: 0.925rem;
+  line-height: 1.55;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.receita-card__dados {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  list-style: none;
+  color: var(--text);
+  font-size: 0.875rem;
+}
+
+.receita-card__dados li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}

@@ -1,15 +1,35 @@
-/* Importa a tela de cadastro de psicólogo. Assim, podemos utilizar essa tela dentro do App. */
+import { useEffect } from 'react'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import Footer from './components/Footer/Footer'
+import Navbar from './components/Navbar/Navbar'
+import Home from './pages/Home/Home'
+import Receitas from './pages/Receitas/Receitas'
 
-import CadastroPsicologo from './pages/CadastroPsicologo';
-
-// Cria o componente principal da aplicação React.
 function App() {
-    // O return define o que será exibido na tela.
-    return (
-        // Exibe o componente de cadastro de psicólogo.
-        <CadastroPsicologo />
-    );
+  const { pathname } = useLocation()
+
+  // Ao trocar de página, volta para o topo (o BrowserRouter não faz isso sozinho).
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
+  return (
+    <div className="app">
+      <a className="pular-link" href="#conteudo">
+        Pular para o conteúdo
+      </a>
+      <Navbar />
+      <main id="conteudo" className="app__principal">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/receitas" element={<Receitas />} />
+          {/* Qualquer rota desconhecida volta para o início */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
+  )
 }
 
-// Exporta o componente App para que outros arquivos possam importá-lo, como a estrutura principal do React.
-export default App;
+export default App

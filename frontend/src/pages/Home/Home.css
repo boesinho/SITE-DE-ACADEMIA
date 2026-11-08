@@ -1,0 +1,168 @@
+/* ---------- Por que musculação? ---------- */
+.home-beneficios {
+  scroll-margin-top: var(--navbar-h);
+}
+
+.home-beneficios__grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-7);
+  list-style: none;
+}
+
+.beneficio {
+  padding: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition:
+    transform 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+}
+
+.beneficio:hover {
+  transform: translateY(-4px);
+  border-color: rgba(198, 255, 0, 0.4);
+}
+
+.beneficio__icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: var(--space-4);
+  background: var(--accent-soft);
+  border: 1px solid rgba(198, 255, 0, 0.3);
+  border-radius: var(--radius);
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.beneficio h3 {
+  margin-bottom: var(--space-2);
+  font-size: 1.6rem;
+}
+
+.beneficio p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ---------- Os 3 pilares ---------- */
+.home-pilares {
+  background: #131315;
+  border-block: 1px solid var(--border);
+}
+
+.home-pilares__grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+  list-style: none;
+}
+
+.pilar {
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--accent);
+}
+
+.pilar__numero {
+  display: block;
+  color: transparent;
+  font-family: var(--font-title);
+  font-size: 4.4rem;
+  line-height: 1;
+  -webkit-text-stroke: 1px var(--accent);
+}
+
+.pilar h3 {
+  margin: var(--space-2) 0;
+  font-size: 2rem;
+}
+
+.pilar p {
+  color: var(--text-muted);
+}
+
+/* ---------- Receitas em destaque ---------- */
+.home-destaques__lista {
+  margin-top: var(--space-7);
+}
+
+.home-destaques__rodape {
+  margin-top: var(--space-6);
+  text-align: center;
+}
+
+.home-destaques__link {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  background: linear-gradient(var(--accent), var(--accent)) left bottom / 0 2px no-repeat;
+  transition: background-size 0.3s var(--ease);
+}
+
+.home-destaques__link:hover {
+  background-size: 100% 2px;
+}
+
+/* ---------- Faixa final ---------- */
+.home-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: var(--space-8);
+  background:
+    radial-gradient(60% 120% at 85% 50%, rgba(198, 255, 0, 0.13), transparent 70%),
+    linear-gradient(120deg, #15180a 0%, #0f0f10 70%);
+  border-top: 1px solid rgba(198, 255, 0, 0.25);
+}
+
+.home-cta__interno {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.home-cta__titulo {
+  font-size: clamp(2.6rem, 8vw, 5rem);
+}
+
+.home-cta__titulo span {
+  color: var(--accent);
+}
+
+.home-cta__texto {
+  max-width: 44ch;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.home-cta__interno .btn {
+  margin-top: var(--space-2);
+}
+
+@media (min-width: 900px) {
+  .home-cta__interno {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: var(--space-7);
+  }
+
+  .home-cta__titulo,
+  .home-cta__texto {
+    grid-column: 1;
+  }
+
+  .home-cta__interno .btn {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin-top: 0;
+    padding: 1rem 2.2rem;
+  }
+}

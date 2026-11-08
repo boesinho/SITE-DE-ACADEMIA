@@ -1,0 +1,227 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  height: var(--navbar-h);
+  background: rgba(15, 15, 16, 0.82);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.navbar__interno {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* ---------- Marca ---------- */
+.navbar__marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+/* Traço inclinado em verde-limão: lembra uma pincelada / barra de peso */
+.navbar__logo {
+  width: 12px;
+  height: 26px;
+  background: var(--accent);
+  border-radius: 2px 6px 2px 6px;
+  transform: skewX(-18deg);
+  transition: transform 0.25s var(--ease);
+}
+
+.navbar__marca:hover .navbar__logo {
+  transform: skewX(-18deg) scaleY(1.12);
+}
+
+.navbar__nome {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  line-height: 1;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+/* 改善 pequeno e sutil, como um carimbo ao lado do nome */
+.navbar__kanji {
+  padding: 0.05rem 0.35rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  opacity: 0.85;
+}
+
+/* ---------- Menu ---------- */
+.navbar__menu {
+  display: none;
+}
+
+.navbar__menu--aberto {
+  position: absolute;
+  top: var(--navbar-h);
+  right: calc(-1 * var(--space-4));
+  left: calc(-1 * var(--space-4));
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-3) var(--space-4) var(--space-5);
+  background: rgba(15, 15, 16, 0.97);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  animation: navbar-desce 0.22s var(--ease);
+}
+
+.navbar__link {
+  position: relative;
+  padding: 0.85rem 0.25rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+
+.navbar__link:hover {
+  color: var(--text);
+}
+
+.navbar__link--ativo {
+  color: var(--accent);
+}
+
+.navbar__link--ativo:hover {
+  color: var(--accent);
+}
+
+/* ---------- Botão hambúrguer ---------- */
+.navbar__botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -0.5rem;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.navbar__hamburguer,
+.navbar__hamburguer::before,
+.navbar__hamburguer::after {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition:
+    transform 0.25s var(--ease),
+    background-color 0.2s var(--ease);
+}
+
+.navbar__hamburguer {
+  position: relative;
+}
+
+.navbar__hamburguer::before,
+.navbar__hamburguer::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.navbar__hamburguer::before {
+  top: -7px;
+}
+
+.navbar__hamburguer::after {
+  top: 7px;
+}
+
+.navbar__botao[aria-expanded='true'] .navbar__hamburguer {
+  background: transparent;
+}
+
+.navbar__botao[aria-expanded='true'] .navbar__hamburguer::before {
+  transform: translateY(7px) rotate(45deg);
+  background: var(--accent);
+}
+
+.navbar__botao[aria-expanded='true'] .navbar__hamburguer::after {
+  transform: translateY(-7px) rotate(-45deg);
+  background: var(--accent);
+}
+
+@keyframes navbar-desce {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Telas maiores: menu em linha, sem hambúrguer ---------- */
+@media (min-width: 768px) {
+  .navbar__botao {
+    display: none;
+  }
+
+  .navbar__menu,
+  .navbar__menu--aberto {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-6);
+    padding: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    animation: none;
+  }
+
+  .navbar__link {
+    padding: 0.5rem 0;
+  }
+
+  /* Sublinhado que marca a rota ativa */
+  .navbar__link::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s var(--ease);
+  }
+
+  .navbar__link:hover::after {
+    transform: scaleX(0.4);
+  }
+
+  .navbar__link--ativo::after,
+  .navbar__link--ativo:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 380px) {
+  .navbar__kanji {
+    display: none;
+  }
+}

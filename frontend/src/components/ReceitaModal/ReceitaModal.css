@@ -1,0 +1,204 @@
+.receita-modal__capa {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 130px;
+  margin-bottom: var(--space-5);
+  border-radius: var(--radius);
+}
+
+.receita-modal__emoji {
+  font-size: 3.6rem;
+  line-height: 1;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
+}
+
+.receita-modal__selo {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  padding: 0.2rem 0.7rem;
+  background: rgba(15, 15, 16, 0.82);
+  border: 1px solid rgba(198, 255, 0, 0.35);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ---------- Números: tempo, calorias, proteína ---------- */
+.receita-modal__dados {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: var(--space-3);
+  list-style: none;
+}
+
+.receita-modal__dados li {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.receita-modal__valor {
+  font-family: var(--font-title);
+  font-size: 1.7rem;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+}
+
+.receita-modal__legenda {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.receita-modal__dado-destaque {
+  background: var(--accent-soft) !important;
+  border-color: rgba(198, 255, 0, 0.4) !important;
+}
+
+.receita-modal__dado-destaque .receita-modal__valor {
+  color: var(--accent);
+}
+
+.receita-modal__nota {
+  margin-top: var(--space-2);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.receita-modal__descricao {
+  margin-top: var(--space-4);
+  color: var(--text-muted);
+}
+
+/* ---------- Ingredientes e preparo ---------- */
+.receita-modal__colunas {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+.receita-modal__colunas h3 {
+  margin-bottom: var(--space-3);
+  color: var(--accent);
+  font-size: 1.5rem;
+}
+
+.receita-modal__ingredientes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.receita-modal__ingredientes li {
+  position: relative;
+  padding-left: 1.3rem;
+  overflow-wrap: anywhere;
+}
+
+.receita-modal__ingredientes li::before {
+  content: '';
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform: skewX(-18deg);
+}
+
+.receita-modal__passos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+  counter-reset: passo;
+}
+
+.receita-modal__passos li {
+  position: relative;
+  min-height: 1.7rem;
+  padding-left: 2.4rem;
+  overflow-wrap: anywhere;
+  counter-increment: passo;
+}
+
+.receita-modal__passos li::before {
+  content: counter(passo);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  background: var(--accent-soft);
+  border: 1px solid rgba(198, 255, 0, 0.4);
+  border-radius: 50%;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.receita-modal__observacao {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-2);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Rodapé ---------- */
+.receita-modal__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  width: 100%;
+}
+
+.receita-modal__espaco {
+  flex: 1;
+}
+
+@media (min-width: 720px) {
+  .receita-modal__colunas {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+}
+
+@media (max-width: 575px) {
+  /* Os 3 números (tempo, kcal, proteína) dividem a largura: fonte e espaço menores
+     evitam que "400 KCAL" quebre em duas linhas. */
+  .receita-modal__dados {
+    gap: var(--space-2);
+  }
+
+  .receita-modal__dados li {
+    padding: var(--space-3) 0.7rem;
+  }
+
+  .receita-modal__valor {
+    font-size: 1.4rem;
+  }
+
+  .receita-modal__acoes .btn {
+    flex: 1 1 7rem;
+  }
+
+  .receita-modal__espaco {
+    display: none;
+  }
+}
