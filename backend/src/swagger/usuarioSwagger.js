@@ -32,26 +32,35 @@ const usuarioSwagger = {
                                 type: 'object',
 
                                 properties: {
-                                    tipo_usuario: {
+                                    nome_usuario: {
                                         type: 'string',
-                                        enum: ['Cliente', 'Psicologo', 'Empresa'],
-                                        example: 'Cliente'
+                                        maxLength: 100,
+                                        example: 'João Silva'
                                     },
                                     email_usuario: {
                                         type: 'string',
+                                        maxLength: 255,
                                         example: 'joao.silva@teste.com'
                                     },
                                     senha_usuario: {
                                         type: 'string',
+                                        maxLength: 255,
                                         example: 'senha123'
+                                    },
+                                    data_nascimento: {
+                                        type: 'string',
+                                        format: 'date',
+                                        nullable: true,
+                                        example: '1995-04-20'
                                     },
                                     ativo: {
                                         type: 'boolean',
+                                        default: true,
                                         example: true
                                     }
                                 },
 
-                                required: ['tipo_usuario', 'email_usuario', 'senha_usuario']
+                                required: ['nome_usuario', 'email_usuario', 'senha_usuario']
                             }
                         }
                     }
@@ -137,18 +146,26 @@ const usuarioSwagger = {
                                 type: 'object',
 
                                 properties: {
-                                    tipo_usuario: {
+                                    nome_usuario: {
                                         type: 'string',
-                                        enum: ['Cliente', 'Psicologo', 'Empresa'],
-                                        example: 'Cliente'
+                                        maxLength: 100,
+                                        example: 'João Silva'
                                     },
                                     email_usuario: {
                                         type: 'string',
+                                        maxLength: 255,
                                         example: 'joao.silva@teste.com'
                                     },
                                     senha_usuario: {
                                         type: 'string',
+                                        maxLength: 255,
                                         example: 'senha123'
+                                    },
+                                    data_nascimento: {
+                                        type: 'string',
+                                        format: 'date',
+                                        nullable: true,
+                                        example: '1995-04-20'
                                     },
                                     ativo: {
                                         type: 'boolean',

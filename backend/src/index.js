@@ -22,44 +22,21 @@ app.use(cors({
     origin: 'http://localhost:5173'
 }));
 
-const pool = require('./db');
 app.use(express.json());
 
-// Informa ao Express onde estão os arquivos do front-end (HTML, CSS, JavaScript e imagens),
-// buscando a pasta frontend na raiz do projeto para disponibilizá-los no navegador.
-app.use(express.static(
-    path.resolve(__dirname, '../../frontend')
-));
+// Front-end: em desenvolvimento o React roda separado, pelo Vite (http://localhost:5173),
+// e apenas consome esta API. Por isso o Express NÃO serve a pasta frontend/ — ela contém
+// o código-fonte do React (JSX), que o navegador não executa.
+// Em produção seria possível servir o build do front por aqui:
+//   1) cd frontend && npm run build        (gera frontend/dist)
+//   2) app.use(express.static(path.resolve(__dirname, '../../frontend/dist')));
 
 const usuarioRoutes = require('./3routes/usuarioRoutes');
 app.use('/usuario', usuarioRoutes);
 
-const clienteRoutes = require('./3routes/clienteRoutes');
-app.use('/cliente', clienteRoutes);
-
-const psicologoRoutes = require('./3routes/psicologoRoutes');
-app.use('/psicologo', psicologoRoutes);
-
-const empresaRoutes = require('./3routes/empresaRoutes');
-app.use('/empresa', empresaRoutes);
-
-const agendaRoutes = require('./3routes/agendaRoutes');
-app.use('/agenda', agendaRoutes);
-
-const anotacaoRoutes = require('./3routes/anotacaoRoutes');
-app.use('/anotacao', anotacaoRoutes);
-
-const avaliacaoRoutes = require('./3routes/avaliacaoRoutes');
-app.use('/avaliacao', avaliacaoRoutes);
-
-const consultaRoutes = require('./3routes/consultaRoutes');
-app.use('/consulta', consultaRoutes);
-
-const pagamentoRoutes = require('./3routes/pagamentoRoutes');
-app.use('/pagamento', pagamentoRoutes);
-
+// Documentação interativa (Swagger UI) das rotas da API.
 app.use(
-    '/swagger',
+    '/api-docs',
     swaggerUi.serve,
     swaggerUi.setup(swaggerSpec));
 

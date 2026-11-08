@@ -34,15 +34,18 @@ async function buscar(req, res){
 async function inserir(req, res) {
     try {
         const {
-            tipo_usuario,
+            nome_usuario,
             email_usuario,
             senha_usuario,
+            data_nascimento,
             ativo
         } = req.body;
+        // TODO: a senha está sendo gravada sem hash (ver docs/pendencias.md).
         const usuarionovo = await Usuario.create({
-            tipo_usuario,
+            nome_usuario,
             email_usuario,
             senha_usuario,
+            data_nascimento,
             ativo
         });
         res.status(201).json(usuarionovo);
@@ -63,15 +66,18 @@ async function atualizar(req, res){
             return res.status(404).json({ erro: 'Usuário não encontrado!' });
         }
         const {
-            tipo_usuario,
+            nome_usuario,
             email_usuario,
             senha_usuario,
+            data_nascimento,
             ativo
         } = req.body;
+        // TODO: a senha está sendo gravada sem hash (ver docs/pendencias.md).
         await usuario.update({
-            tipo_usuario,
+            nome_usuario,
             email_usuario,
             senha_usuario,
+            data_nascimento,
             ativo
         });
         res.json(usuario);

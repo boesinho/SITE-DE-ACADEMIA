@@ -1,12 +1,12 @@
-const cargoSwagger = require('./usuarioSwagger');
+const usuarioSwagger = require('./usuarioSwagger');
 
 const swaggerSpec = {
     openapi: '3.0.0',
 
     info: {
-        title: 'API - Sistema',
+        title: 'API - Kaizen Gym',
         version: '1.0.0',
-        description: 'Documentação da API do sistema'
+        description: 'Documentação da API do site Kaizen Gym'
     },
 
     servers: [
@@ -16,7 +16,7 @@ const swaggerSpec = {
     ],
 
     paths: {
-        ...cargoSwagger.paths
+        ...usuarioSwagger.paths
     }
 };
 
