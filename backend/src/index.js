@@ -1,9 +1,10 @@
 const path = require('path');
 
-// Carrega as variáveis de ambiente do arquivo .env localizado na raiz do projeto,
-// pois este arquivo index.js está dentro de backend/src.
+// Carrega as variáveis de ambiente do arquivo backend/.env.
+// Este index.js está em backend/src, então o .env fica um nível acima (../.env).
+// O caminho é resolvido a partir do arquivo, não da pasta onde o comando é executado.
 require('dotenv').config({
-    path: path.resolve(__dirname, '../../.env')
+    path: path.resolve(__dirname, '../.env')
 });
 
 const express = require('express');
