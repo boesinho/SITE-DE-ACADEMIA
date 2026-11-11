@@ -1,16 +1,47 @@
-# React + Vite
+# Kaizen Gym — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Site do Kaizen Gym feito com **React 19**, **Vite** e **React Router**. Consome a API do backend (Express) para listar, cadastrar, editar e excluir receitas fitness.
 
-Currently, two official plugins are available:
+## Páginas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Rota | Página |
+| --- | --- |
+| `/` | Início: benefícios da musculação, 3 pilares e receitas em destaque |
+| `/receitas` | Receitas fitness com filtro por categoria (guardado na URL), detalhes, cadastro, edição e exclusão |
 
-## React Compiler
+Qualquer outra rota volta para o início.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Como rodar
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+O site abre em **http://localhost:5173**. A porta é fixa porque o CORS do backend só libera essa origem. O backend precisa estar rodando em `http://localhost:3000` (veja o [README da raiz](../README.md)).
+
+## Variáveis de ambiente
+
+O endereço da API vem de `VITE_API_URL`. Se o arquivo `frontend/.env` não existir, o padrão é `http://localhost:3000`. Para personalizar:
+
+```bash
+cp .env.example .env
+```
+
+## Scripts
+
+| Comando | O que faz |
+| --- | --- |
+| `npm run dev` | Servidor de desenvolvimento do Vite |
+| `npm run build` | Gera o build de produção em `dist/` |
+| `npm run preview` | Serve o build localmente |
+| `npm run lint` | Roda o ESLint |
+
+## Estrutura de `src/`
+
+- `pages/` — páginas (`Home`, `Receitas`)
+- `components/` — componentes reutilizáveis (Navbar, Hero, cards, modais, formulário)
+- `hooks/` — hooks, como `useReceitas`
+- `services/api.js` — chamadas à API com `fetch`
+- `config/` — dados fixos do site e categorias de receita
+- `utils/` — funções auxiliares de formatação
